@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    environment:
+      TZ: '${TZ}'                # Use timezone from .env
+      WEBPASSWORD: '${WEBPASSWORD}' # Use admin password from .env
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    ports:
+      - '53:53/tcp'
+      - '53:53/udp'
+      - '80:80/tcp'
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    networks:
+      pihole_network:
+        ipv4_address: '${PIHOLE_IP}' # Use static IP from .env
+
+networks:
+  pihole_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: '${SUBNET}'       # Use subnet from .env
+

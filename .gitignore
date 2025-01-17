@@ -1,0 +1,27 @@
+# Makes sure the example file is tracked
+!.env.example
+
+
+
+
+# Environment variables
+.env
+
+# Docker runtime files
+pihole/etc-pihole/
+pihole/etc-dnsmasq.d/
+
+# Log files
+*.log
+
+# macOS system files
+.DS_Store
+
+# IDE or editor configurations
+.vscode/
+.idea/
+
+# Generated files
+*.pyc
+*.class
+

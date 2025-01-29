@@ -1,4 +1,4 @@
-**Complete Step-by-Step Pi-hole Setup on Raspberry Pi 3 with Docker**
+# **Complete Step-by-Step Pi-hole Setup on Raspberry Pi 3 with Docker**
 
 This guide documents every step required to set up Pi-hole inside Docker on a Raspberry Pi 3 running Raspberry Pi OS Lite (32-bit). It includes all necessary configurations, commands, and considerations.
 
@@ -134,21 +134,21 @@ nano docker-compose.yml
 ```yaml
 version: '3'
 services:
-pihole:
-container_name: pihole
-image: pihole/pihole:latest
-restart: unless-stopped
-network_mode: "host"
-environment:
-TZ: "America/Chicago"
-WEBPASSWORD: "yourpassword"
-DNSMASQ_LISTENING: "all"
-PIHOLE_DNS_: "8.8.8.8;8.8.4.4"
-volumes:
-- './pihole/etc-pihole:/etc/pihole'
-- './pihole/etc-dnsmasq:/etc/dnsmasq.d'
-cap_add:
-- NET_ADMIN
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    network_mode: "host"
+    environment:
+      TZ: "America/Chicago"
+      WEBPASSWORD: "yourpassword"
+      DNSMASQ_LISTENING: "all"
+      PIHOLE_DNS_: "8.8.8.8;8.8.4.4"
+    volumes:
+      - './pihole/etc-pihole:/etc/pihole'
+      - './pihole/etc-dnsmasq:/etc/dnsmasq.d'
+    cap_add:
+      - NET_ADMIN
 ```
 - Save and exit: **CTRL + X, then Y, then ENTER**.
 

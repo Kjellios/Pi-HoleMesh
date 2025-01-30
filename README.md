@@ -142,7 +142,7 @@ services:
     environment:
       TZ: "America/Chicago"
       WEBPASSWORD: "yourpassword"
-      DNSMASQ_LISTENING: "all"
+      DNSMASQ_LISTENING: "local"  # Ensure Pi-hole listens only to local requests
       PIHOLE_DNS_: "8.8.8.8;8.8.4.4"
     volumes:
       - './pihole/etc-pihole:/etc/pihole'
@@ -152,6 +152,12 @@ services:
 ```
 - Save and exit: **CTRL + X, then Y, then ENTER**.
 
+### **3. Ensure Correct Ownership for Persistence**
+   - Run:
+     ```sh
+     sudo chown -R 1000:1000 ./pihole/etc-pihole ./pihole/etc-dnsmasq
+     sudo chmod -R 755 ./pihole/etc-pihole ./pihole/etc-dnsmasq
+     ```
 ---
 
 ## **Step 7: Start Pi-hole in Docker**
@@ -208,3 +214,9 @@ hostname -I
 
 ## **Pi-hole Setup Successfully Completed**
 Pi-hole is fully operational inside Docker on a Raspberry Pi 3.
+
+
+
+## Troubleshooting
+If you encounter issues, check the [Troubleshooting Guide](TROUBLESHOOTING.md).
+
